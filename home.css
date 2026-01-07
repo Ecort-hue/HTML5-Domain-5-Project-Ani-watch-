@@ -1,0 +1,23 @@
+body {
+    background-color: #121212;
+}
+
+.title {
+    color: #FFFFFF;
+    font-family: "Space Mono", monospace;
+    border-bottom: 2px solid #BB86FC;
+    margin: -5px;
+}
+
+
+
+
+
+
+
+.a_title {
+    color: #FFFFFF;
+    font-size: 21px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
