@@ -45,3 +45,24 @@ body {
     background-color: #1E1E1E;
     border-radius: 10px;
 }
+
+.view {
+    background-color: #1E1E1E;
+    border: 2px solid #BB86FC;
+    color: #FFFFFF;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+   
+}
+
+.back-button {
+    background-color: #1E1E1E;
+    border: 2px solid #BB86FC;
+    color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    padding: 4px 6px;
+    
+}
