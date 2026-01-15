@@ -7,6 +7,23 @@ body {
     font-family: "Space Mono", monospace;
     font-size: 23px;
 }
+
+.fav_button{
+    float: right;
+    background-color: #121212;
+    border: 2px solid #BB86FC;
+    color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 16px;
+    font-family: "Space Mono", monospace,bold;
+}
+
+
+
+
+
 .upcoming-list
 {
     font-family: "Space Mono", monospace;
@@ -36,7 +53,6 @@ body {
 .list_img {
     border-radius: 10px;
     display: grid;
-  
 }
 
 .list_a {
@@ -53,7 +69,7 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-   
+   float: right;
 }
 
 .back-button {
@@ -65,4 +81,31 @@ body {
     margin: 10px;
     padding: 4px 6px;
     
+}
+
+
+.top-anime-list{
+
+    font-family: "Space Mono", monospace;
+    color: #FFFFFF;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 60px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.list_b {
+   
+    margin: 60px;
+    padding: 10px;
+    background-color: #1E1E1E;
+    border-radius: 10px;
+}
+
+.add{
+
+   
+    color: #FFFFFF;
+    cursor: pointer;
 }

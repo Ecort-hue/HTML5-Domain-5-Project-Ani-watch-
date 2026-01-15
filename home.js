@@ -17,7 +17,9 @@ upcoming.onreadystatechange = function () {
             list_a.innerHTML = `<img class="list_img" src="${data[i].images.jpg.image_url}">
         <div class="list_info">
         <h3 class="list_title">${data[i].title}</h3>
-        <h3 class="list_favorites">Favorites: ${data[i].favorites}</h3>
+       <h3 class="list_status">Status: ${ data[i].status}</h3>
+       <h3 class="list_favorites">Add to Favorites</h3>
+       <h3 class= "add">✦</h3>
         </div>`;
             upcoming_list.appendChild(list_a);
 
@@ -47,4 +49,9 @@ upcoming.send();
 const View_all = document.querySelector('.view');
 View_all.addEventListener('click', () => {
     window.location.href = 'upcoming.html';
+});
+
+const fav_button = document.querySelector('.fav_button');
+fav_button.addEventListener('click', () => {
+    window.location.href = 'favorites.html';
 });

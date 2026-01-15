@@ -1,0 +1,9 @@
+.title {
+    color: #FFFFFF;
+    font-family: "Space Mono", monospace;
+    border-bottom: 2px solid #BB86FC;
+    margin: -5px;
+}
+body {
+    background-color: #121212;
+}
