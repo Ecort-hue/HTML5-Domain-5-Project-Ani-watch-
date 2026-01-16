@@ -7,3 +7,21 @@
 body {
     background-color: #121212;
 }
+
+.favorites-header {
+    color: #FFFFFF;
+    font-family: "Space Mono", monospace;
+    font-size: 23px;
+   
+}
+
+.back-button {
+        background-color: #1E1E1E;
+            border: 2px solid #BB86FC;
+            color: #FFFFFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            margin: 10px;
+}

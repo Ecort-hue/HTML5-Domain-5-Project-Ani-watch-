@@ -65,8 +65,8 @@
             "type": "TV",
             "source": "Manga",
             "episodes": null,
-            "status": "Not yet aired",
-            "airing": false,
+            "status": "Airing",
+            "airing": true,
             "aired": {
                 "from": "2026-01-16T00:00:00+00:00",
                 "to": null,
