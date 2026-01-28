@@ -8,6 +8,18 @@ back_button.addEventListener('click', () => {
 });
 
 
+FormData.addEventListener("submit",function(submit){
 
+let add = {
+"title": title,
+
+
+}
+
+
+}
+
+
+)
 
 
