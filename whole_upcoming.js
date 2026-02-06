@@ -8,7 +8,7 @@ upcoming.onreadystatechange = function () {
         data = data.data;
         console.log(data);
 
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 21; i++) {
             const upcoming_list = document.querySelector('.upcoming-list');
             const list_a = document.createElement('div');
             list_a.className = 'list_a';
