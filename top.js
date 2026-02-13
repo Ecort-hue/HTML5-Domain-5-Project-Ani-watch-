@@ -44,6 +44,9 @@ function addFavoritecreeper() {
                 localStorage.setItem('favorites', JSON.stringify(favorites));
                 alert(`${animeTitle} has been added to your favorites!`);
                 console.log(favorites);
+
+
+                
             }
         });
     });

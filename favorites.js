@@ -15,7 +15,7 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         data = JSON.parse(this.responseText);
-        console.log("Loaded from gameData.json");
+        console.log("Loaded");
 
         localStorage.setItem("datalist", JSON.stringify(data));
         console.log("Saved starter data to localStorage");
@@ -46,10 +46,10 @@ if (localStorage.getItem("favorites")) {
 } 
 
 
-    }}
+}}
 
 
-
+ 
 if (localStorage.getItem("datalist")) {
     data = JSON.parse(localStorage.getItem("datalist"));
 } else {
@@ -85,7 +85,7 @@ if (localStorage.getItem("datalist")) {
 
 if (submitButton && titleInput && imgInput) {
     submitButton.addEventListener('click', () => {
-        const title = (titleInput.value || '').tsubmitButtonrim();
+        const title = (titleInput.value || '').submitButtonrim();
         const image = (imgInput.value || '').trim();
 
         if (!title && !image) return;
@@ -103,7 +103,8 @@ if (submitButton && titleInput && imgInput) {
 
 
 
-
+xhttp.open("GET", `upcoming.json`, true);
+xhttp.send();
 
 
 

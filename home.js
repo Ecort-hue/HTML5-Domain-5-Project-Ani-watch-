@@ -37,6 +37,10 @@ View_all.addEventListener('click', () => {
     window.location.href = 'upcoming.html';
 });
 
+const view2 = document.querySelector('.view2');
+view2.addEventListener('click', () => {
+    window.location.href = 'top.html';
+});
 
 const fav_button = document.querySelector('.fav_button');
 fav_button.addEventListener('click', () => {
