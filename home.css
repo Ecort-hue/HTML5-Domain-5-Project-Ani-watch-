@@ -58,7 +58,7 @@ body {
     border-radius: 10px;
 }
 
-.view {
+.view,.view2 {
     background-color: #1E1E1E;
     border: 2px solid #BB86FC;
     color: #FFFFFF;
@@ -80,15 +80,11 @@ body {
 }
 
 
-.top-anime-list{
-
+.top-anime-list {
     font-family: "Space Mono", monospace;
     color: #FFFFFF;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin: 60px;
-    padding: 10px;
-    border-radius: 10px;
 }
 
 .list_b {
@@ -104,4 +100,27 @@ body {
    
     color: #FFFFFF;
     cursor: pointer;
+}
+.add-fav-btn {
+    background-color: transparent;
+    border: 2px solid #BB86FC;
+    color: #BB86FC;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-family: "Space Mono", monospace;
+    font-size: 13px;
+    margin-top: 6px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.add-fav-btn:hover:not(:disabled) {
+    background-color: #BB86FC;
+    color: #121212;
+}
+
+.add-fav-btn:disabled {
+    border-color: #555;
+    color: #555;
+    cursor: default;
 }

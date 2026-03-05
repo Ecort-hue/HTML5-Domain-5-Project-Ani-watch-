@@ -1,46 +1,50 @@
-var top_ = new XMLHttpRequest();
-let data;
 let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
+var top_ = new XMLHttpRequest();
 top_.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-        data = JSON.parse(this.responseText);
-        data = data.data;
-        console.log(data);
+        const data = JSON.parse(this.responseText).data;
+        const count = Math.min(21, data.length);
+        const top_list = document.querySelector('.top-anime-list');
 
-        for (let l = 0; l < 21; l++) {
-            const top_list = document.querySelector('.top_list');
+        for (let l = 0; l < count; l++) {
             const list_b = document.createElement('div');
             list_b.className = 'list_b';
-            list_b.innerHTML = `<img class="list_img" src="${data[l].images.jpg.image_url}">
-            <div class="list_info">
-            <h3 class="list_title">${data[l].title}</h3>
-            <h3 class="list_status">Status: ${data[l].status}</h3>
-            <h3 class="list_favorites">Add to Favorites</h3>
-            <h3 class="add">⭐</h3>
-        </div>`;
+            const imgUrl = data[l].images.jpg.image_url;
+            list_b.innerHTML = `
+                <img class="list_img" src="${imgUrl}">
+                <div class="list_info">
+                    <h3 class="list_title">${data[l].title}</h3>
+                    <h3 class="list_status">Status: ${data[l].status}</h3>
+                    <button class="add-fav-btn" data-title="${data[l].title}" data-img="${imgUrl}">⭐ Add to Favorites</button>
+                </div>`;
             top_list.appendChild(list_b);
 
+            const btn = list_b.querySelector('.add-fav-btn');
+            const title = btn.dataset.title;
 
-            const add = list_b.querySelector('.add');
-            add.addEventListener('click', () => {
-                const title = list_b.querySelector('.list_title').innerHTML;
-                if (!favorites.includes(title)) {
-                    favorites.push(title);
+            if (favorites.find(f => f.title === title)) {
+                btn.textContent = '✅ Added!';
+                btn.disabled = true;
+            }
+
+            btn.addEventListener('click', () => {
+                favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                const img = btn.dataset.img;
+                if (!favorites.find(f => f.title === title)) {
+                    favorites.push({ title, img });
                     localStorage.setItem('favorites', JSON.stringify(favorites));
-                    alert(`${title} has been added to your favorites!`);
-                    console.log(favorites);
+                    btn.textContent = '✅ Added!';
+                    btn.disabled = true;
+                } else {
+                    btn.textContent = '✅ Already saved';
+                    btn.disabled = true;
                 }
             });
         }
     }
 }
-top_.open("GET", `top.json`, true);
+top_.open("GET", "https://api.jikan.moe/v4/top/anime?sfw", true);
 top_.send();
 
-
-const back_button = document.querySelector('.back-button');
-back_button.addEventListener('click', () => {
-    window.location.href = 'home.html';
-});
-
+document.querySelector('.back-button').addEventListener('click', () => window.location.href = 'home.html');

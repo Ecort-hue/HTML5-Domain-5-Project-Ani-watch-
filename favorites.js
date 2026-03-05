@@ -1,118 +1,80 @@
-const back_button = document.querySelector('.back-button');
-var data;
-var grid = document.querySelector(".grid-container");
+const backButton = document.querySelector('.back-button');
+const grid = document.getElementById('favorites-grid');
+const emptyMsg = document.getElementById('empty-msg');
 const submitButton = document.querySelector('.form-button');
-const imgInput = document.querySelector('input[placeholder="Img URl"]');
-const titleInput = document.querySelector('input[placeholder="Title"]');
+const titleInput = document.getElementById('titleInput');
+const imgInput = document.getElementById('imgInput');
 
-
-back_button.addEventListener('click', () => {
+backButton.addEventListener('click', () => {
     window.location.href = 'home.html';
 });
 
-var xhttp = new XMLHttpRequest();
+function getFavorites() {
+    return JSON.parse(localStorage.getItem('favorites')) || [];
+}
 
-xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        data = JSON.parse(this.responseText);
-        console.log("Loaded");
+function saveFavorites(favs) {
+    localStorage.setItem('favorites', JSON.stringify(favs));
+}
 
-        localStorage.setItem("datalist", JSON.stringify(data));
-        console.log("Saved starter data to localStorage");
+function renderFavorites() {
+    const favorites = getFavorites();
+    grid.innerHTML = '';
 
-
-
-        function makeCards() {
-            grid.innerHTML = "";
-
-            data.forEach(function (favorites) {
-                let card = document.createElement("div");
-                card.classList.add("card");
-
-                let textData =
-                    "<div class='grid-container'>" + animeTitle + "</div>";
-
-                card.innerHTML = textData;
-                grid.appendChild(card);
-            });
-        }
-
-if (localStorage.getItem("favorites")) {
-    data = JSON.parse(localStorage.getItem("datalist"));
-    console.log("Loaded from localStorage");
-    if (grid) {
-        makeCards();
+    if (favorites.length === 0) {
+        emptyMsg.style.display = 'block';
+        return;
     }
-} 
 
+    emptyMsg.style.display = 'none';
 
-}}
-
-
- 
-if (localStorage.getItem("datalist")) {
-    data = JSON.parse(localStorage.getItem("datalist"));
-} else {
-    data = [];
-
-
-
-
-    data.forEach(item => {
+    favorites.forEach((item, index) => {
         const card = document.createElement('div');
-        card.className = 'card';
-
+        card.className = 'fav-card';
 
         const img = document.createElement('img');
-        img.className = 'card-img';
-        img.src = item.image || item.img || '';
-        img.alt = item.title || 'Favorite';
-
+        img.className = 'fav-img';
+        img.src = item.img || 'https://via.placeholder.com/220x300?text=No+Image';
+        img.alt = item.title || 'Favorite Anime';
 
         const title = document.createElement('div');
-        title.className = 'card-title';
+        title.className = 'fav-title';
         title.textContent = item.title || 'Untitled';
 
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-btn';
+        removeBtn.textContent = '🗑 Remove';
+        removeBtn.addEventListener('click', () => {
+            const favs = getFavorites();
+            favs.splice(index, 1);
+            saveFavorites(favs);
+            renderFavorites();
+        });
 
         card.appendChild(img);
         card.appendChild(title);
-
-
+        card.appendChild(removeBtn);
         grid.appendChild(card);
     });
 }
 
+submitButton.addEventListener('click', () => {
+    const title = titleInput.value.trim();
+    const img = imgInput.value.trim();
 
-if (submitButton && titleInput && imgInput) {
-    submitButton.addEventListener('click', () => {
-        const title = (titleInput.value || '').submitButtonrim();
-        const image = (imgInput.value || '').trim();
+    if (!title) return;
 
-        if (!title && !image) return;
+    const favs = getFavorites();
+    const alreadyExists = favs.find(f => f.title === title);
+    if (!alreadyExists) {
+        favs.push({ title, img });
+        saveFavorites(favs);
+        renderFavorites();
+    }
 
-        const newItem = { title, image };
-        data.push(newItem);
-        
+    titleInput.value = '';
+    imgInput.value = '';
+});
 
-        titleInput.value = '';
-        imgInput.value = '';
-      
-    });
-}
-
-
-
-
-xhttp.open("GET", `upcoming.json`, true);
-xhttp.send();
-
-
-
-
-
-
-//if (favorites) {
-//const fav = localStorage.getItem("Favorites");
- //   const ImgDisplay = document.getElementById("fav_img");
-//}
-
+// Initial render
+renderFavorites();
